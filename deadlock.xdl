@@ -1,0 +1,54 @@
+<deadlock-list>
+	<deadlock victim="process11640a0108">
+		<process-list>
+			<process id="process11640a0108" taskpriority="0" logused="268" waitresource="RID: 4:1:1731:0" waittime="2528" ownerId="51885" transactionname="user_transaction" lasttranstarted="2022-01-12T13:47:41.310" XDES="0x1164888428" lockMode="U" schedulerid="3" kpid="924" status="suspended" spid="63" sbid="0" ecid="0" priority="0" trancount="2" lastbatchstarted="2022-01-12T13:48:03.740" lastbatchcompleted="2022-01-12T13:48:03.737" lastattention="2022-01-12T13:47:41.310" clientapp="azdata-Query" hostname="X1" hostpid="5657" loginname="sa" isolationlevel="read committed (2)" xactid="51885" currentdb="4" currentdbname="msdb" lockTimeout="4294967295" clientoption1="671156320" clientoption2="390200">
+				<executionStack>
+					<frame procname="adhoc" line="1" stmtstart="60" stmtend="164" sqlhandle="0x02000000696fc60d07e5ac70ad4c651c06a4ec011548aecb0000000000000000000000000000000000000000">
+						unknown
+					</frame>
+					<frame procname="adhoc" line="1" stmtend="110" sqlhandle="0x020000006952303665e54f4ef5c753f49cf78ff6796331540000000000000000000000000000000000000000">
+						unknown
+					</frame>
+				</executionStack>
+				<inputbuf>
+					UPDATE Employees
+					SET Phone = N'555-9999'
+					WHERE EmpId = 1
+				</inputbuf>
+			</process>
+			<process id="process11640908c8" taskpriority="0" logused="280" waitresource="RID: 4:1:1733:0" waittime="5617" ownerId="51796" transactionname="user_transaction" lasttranstarted="2022-01-12T13:47:37.553" XDES="0x1164900428" lockMode="U" schedulerid="2" kpid="904" status="suspended" spid="65" sbid="0" ecid="0" priority="0" trancount="2" lastbatchstarted="2022-01-12T13:48:00.653" lastbatchcompleted="2022-01-12T13:48:00.650" lastattention="2022-01-12T13:26:57.483" clientapp="azdata-Query" hostname="X1" hostpid="5657" loginname="sa" isolationlevel="read committed (2)" xactid="51796" currentdb="4" currentdbname="msdb" lockTimeout="4294967295" clientoption1="671156320" clientoption2="390200">
+				<executionStack>
+					<frame procname="adhoc" line="2" stmtstart="60" stmtend="170" sqlhandle="0x02000000523f2b16e8151c86efb7cbf2c4b97d43c97666f80000000000000000000000000000000000000000">
+						unknown
+					</frame>
+					<frame procname="adhoc" line="2" stmtstart="2" stmtend="118" sqlhandle="0x02000000be889c37254fcdf826dca72df4c9f69d01e02fbd0000000000000000000000000000000000000000">
+						unknown
+					</frame>
+				</executionStack>
+				<inputbuf>
+					UPDATE Suppliers
+					SET Fax = N'555-1212'
+					WHERE SupplierId = 1
+				</inputbuf>
+			</process>
+		</process-list>
+		<resource-list>
+			<ridlock fileid="1" pageid="1731" dbid="4" objectname="msdb.dbo.Employees" id="lock1165ff6e00" mode="X" associatedObjectId="72057594060931072">
+				<owner-list>
+					<owner id="process11640908c8" mode="X" />
+				</owner-list>
+				<waiter-list>
+					<waiter id="process11640a0108" mode="U" requestType="wait" />
+				</waiter-list>
+			</ridlock>
+			<ridlock fileid="1" pageid="1733" dbid="4" objectname="msdb.dbo.Suppliers" id="lock116e61f400" mode="X" associatedObjectId="72057594060996608">
+				<owner-list>
+					<owner id="process11640a0108" mode="X" />
+				</owner-list>
+				<waiter-list>
+					<waiter id="process11640908c8" mode="U" requestType="wait" />
+				</waiter-list>
+			</ridlock>
+		</resource-list>
+	</deadlock>
+</deadlock-list>
